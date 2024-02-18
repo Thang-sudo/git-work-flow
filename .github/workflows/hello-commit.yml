@@ -5,31 +5,20 @@
 # Runner = container env that runs the code like runs-on
 # Steps = step of a job
 # Actions = action of that step
-name: Update and Download Yaml file
+name: Hello Commit
 on: 
   push:
     branches: 
       - main
 
 jobs: 
-  update-and-downoad:
+  hello-commit:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
     
-    - name: Setup Python
-      uses: actions/setup-python@v2
-      with:
-        python-version: '3.x'
-    
-    - name: Install dependencies 
-      run: |
-        python -m pip install --upgrade pip
-        pip install pyyaml
-    
-    - name: Run python script
-      run: |
-        echo "Hello, world! Python script is running"
-
-
+    - name: Print commit information
+      run: | 
+        echo "Hello - $(git rev-parse --short ${{ github.sha }}})" 
+        echo "Commit URL: https://github.com/${{ github.repository }}/commit/${{ github.sha }}"
