@@ -17,6 +17,8 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
+      with:
+        fetch-depth: 0
     # # Step to get list of yaml files 
     # - name: Get list of updated savedFilter files
     #   id: list-files
