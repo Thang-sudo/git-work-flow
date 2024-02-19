@@ -22,8 +22,8 @@ jobs:
       id: list-files
       run: |
         export changed_files=$(git diff-tree --no-commit-id --name-only -r ${{ github.sha }} | sed 's/^[ \t]*//' | tr -d '\n' | grep -E "^savedFilters/.*\.ya?ml$")
+        echo "List of files is $(git diff-tree --no-commit-id --name-only -r ${{ github.sha }} | sed 's/^[ \t]*//' | tr -d '\n' | grep -E "^savedFilters/.*\.ya?ml$")"
         echo "files=$changed_files" >> $GITHUB_OUTPUT
-        echo "List of files is $changed_files"
     
     - name: Setup Python
       uses: actions/setup-python@v2
