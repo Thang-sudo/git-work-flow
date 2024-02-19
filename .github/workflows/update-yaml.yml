@@ -43,11 +43,17 @@ jobs:
     - name: Get Updated files
       run: echo ${{ steps.update_yaml.outputs.downloaded_files }}
     
+    - name: Upload updated files
+      uses: actions/upload-artifact@v2
+      with:
+        name: updated-yaml
+        path: ${{ steps.update_yaml.outputs.downloaded_files }}
+        
     - name: Download updated files
       uses: actions/download-artifact@v2
       with: 
         name: updated-yaml
-        path: ./Downloads
+        path: ${{ steps.update_yaml.outputs.downloaded_files }}
 
 
 
