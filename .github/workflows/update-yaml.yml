@@ -41,7 +41,11 @@ jobs:
       working-directory: ${{ github.workspace }}
     
     - name: Get Updated files
-      run: echo ${{ steps.update_yaml.outputs.downloaded_files }}
+      run: |
+        IFS=$'\n' read -ra files <<< "$updated_files"
+        for file in "${files[@]}"; do
+          echo "$file"
+        done
     
     - name: Upload updated files
       uses: actions/upload-artifact@v2
