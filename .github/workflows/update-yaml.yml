@@ -21,6 +21,7 @@ jobs:
     - name: Get list of updated savedFilter files
       id: list-files
       run: |
+        echo "the current commit is ${{ github.sha }}"
         export changed_files=$(git diff-tree --no-commit-id --name-only -r ${{ github.sha }} | grep -E "^savedFilters/.*\.ya?ml$")
         echo "files=$changed_files" >> $GITHUB_OUTPUT
     
