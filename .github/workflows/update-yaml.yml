@@ -34,6 +34,8 @@ jobs:
     
     - name: Run python script
       run: |
+        git config --global user.email "leminhthang.tnl@gmail.com"
+        git config --global user.name "Thang-sudo"
         python update-yaml.py
       working-directory: ${{ github.workspace }}
 
