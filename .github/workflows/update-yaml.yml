@@ -23,7 +23,7 @@ jobs:
       run: |
         export changed_files=$(git diff-tree --no-commit-id --name-only -r ${{ github.sha }} | sed 's/^[ \t]*//' | tr -d '\n' | grep -E "^savedFilters/.*\.ya?ml$")
         echo "current commit is ${{github.sha}}"
-        echo "List of files is $(git diff-tree --no-commit-id --name-only -r ${{ github.sha }} | sed 's/^[ \t]*//' | tr -d '\n' | grep -E "^savedFilters/.*\.ya?ml$")"
+        echo "List of files is $(git diff-tree --no-commit-id --name-only -r ${{ github.sha }} | sed 's/^[ \t]*//' | tr -d '\n' | grep -E '^savedFilters/.*\.ya?ml$')"
         echo "files=$changed_files" >> $GITHUB_OUTPUT
     
     - name: Setup Python
