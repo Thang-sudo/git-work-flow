@@ -47,7 +47,7 @@ def get_changed_files(commit_sha):
     try:
         result = subprocess.run(command, capture_output=True, text=True)
         changed_files = result.stdout.strip().split('\n')
-        print("Got these files: " + result.stdout)
+        print("Got these files: " + result.stdout.strip())
         return changed_files
     except subprocess.CalledProcessError as e:
         print("ERROR: Failed to get list of changed files " + e)
