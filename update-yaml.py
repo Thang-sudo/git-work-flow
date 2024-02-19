@@ -24,12 +24,19 @@ def update_yaml_file(input_file, output_file):
 
 def get_current_commit_sha():
     command = ["git", "rev-parse", "HEAD"]
-    result = subprocess.run(command, capture_output=True, text=True)
-    if result.check_returncode == 0:
+    try:
+        result = subprocess.run(command, capture_output=True, text=True)
+        print("Currnet commit sha: " + result.stdout)
         return result.stdout.strip()
-    else:
-        print("ERROR: Failed to execture git rev-parse command" + result.stderr)
+    except subprocess.CalledProcessError as e:
+        print("ERROR: Failed to get commit sha " + e)
         return None
+    
+    # if result.check_returncode == 0:
+    #     return result.stdout.strip()
+    # else:
+    #     print("ERROR: Failed to execture git rev-parse command" + result.stderr)
+    #     return None
 
 def get_changed_files(commit_sha):
     if commit_sha is None:
