@@ -13,12 +13,11 @@ def calculate_age(dob):
 def update_yaml_file(input_file):
     with open(input_file, 'r') as f:
         data = yaml.safe_load(f)
-    for entry in data:
-        dob = entry.get('dob')
-        if dob:
-            age = calculate_age(dob)
-            print("calculated age: " + age)
-            entry['age'] = age
+    dob = data["dob"]
+    if dob:
+        age = calculate_age(dob)
+        data["age"] = age
+        print("calculated age is " + str(data["age"]))
     
     with open(input_file, 'w') as f:
         yaml.dump(data, f)
