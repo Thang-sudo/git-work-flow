@@ -46,7 +46,8 @@ def get_changed_files(commit_sha):
     command = ["git", "diff-tree", "--no-commit-id", "--name-only", "-r", commit_sha]
     try:
         result = subprocess.run(command, capture_output=True, text=True)
-        changed_files = result.stdout.strip().split('\n');
+        changed_files = result.stdout.strip().split('\n')
+        print("Got these files: " + changed_files)
         return changed_files
     except subprocess.CalledProcessError as e:
         print("ERROR: Failed to get list of changed files " + e)
