@@ -36,6 +36,6 @@ jobs:
     
     - name: Run python script
       run: |
-        echo "Hello, world! Python script is running"
+        echo "Hello! This files are updated ${{ steps.list-files.files }}"
 
 
