@@ -10,17 +10,17 @@ def calculate_age(dob):
     age = today.year - dob_date.year - ((today.month, today.day) < (dob_date.month, dob_date.day))
     return age
 
-def update_yaml_file(input_file, output_file):
+def update_yaml_file(input_file):
     with open(input_file, 'r') as f:
         data = yaml.safe_load(f)
     for entry in data:
         dob = entry.get('dob')
         if dob:
             age = calculate_age(dob)
+            print("calculated age: " + age)
             entry['age'] = age
-            del entry['dob']
     
-    with open(output_file, 'w') as f:
+    with open(input_file, 'w') as f:
         yaml.dump(data, f)
 
 def get_current_commit_sha():
@@ -53,5 +53,5 @@ if __name__ == "__main__":
     print("list of changed yaml files: ")
     for file in changed_files:
         if file.startswith("savedFilters") and (file.endswith(".yaml") or file.endswith(".yml")):
-            print(file)
+            update_yaml_file(file)
 
