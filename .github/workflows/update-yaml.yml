@@ -49,7 +49,7 @@ jobs:
         name: updated-yaml
         path: ./savedFilters/*
     - name: Download artifacts
-      uses: action/download-artifact@v2
+      uses: actions/download-artifact@v2
       with:
         name: updated-yaml
         path: ./artifacts
