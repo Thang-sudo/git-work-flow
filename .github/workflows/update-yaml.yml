@@ -40,10 +40,14 @@ jobs:
         python update-yaml.py
       working-directory: ${{ github.workspace }}
     
-    - name: Build and upload artifacts
-      uses: actions/upload-artifact@v2
-      with:
-        name: build-artifact
-        path: ./artifacts
+    - name: Get Updated files
+      run: echo ${{ steps.update_yaml.outputs.downloaded_files }}
+    
+    - name: Download updated files
+      uses: actions/download-artifact@v2
+      with: 
+        name: updated-yaml
+        path: ./Downloads
+
 
 
