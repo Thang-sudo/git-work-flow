@@ -15,21 +15,12 @@ jobs:
   update-and-download:
     runs-on: ubuntu-latest
     steps:
+    # The default git checkout has fetch-depth = 1 meaning it's checkout the lastet commit 
+    # Change to 0 to fetch the whole commit history
     - name: Checkout code
       uses: actions/checkout@v2
       with:
         fetch-depth: 0
-    # # Step to get list of yaml files 
-    # - name: Get list of updated savedFilter files
-    #   id: list-files
-    #   run: |
-    #     export current_commit=github.sha
-    #     git diff-tree --no-commit-id --name-only -r ${{ github.sha }}
-    #     export changed_files=$(git diff-tree --no-commit-id --name-only -r ${{ github.sha }})
-    #     echo "current commit is ${{github.sha}}"
-    #     echo "List of files is $(git diff-tree --no-commit-id --name-only -r ${{ github.sha }})"
-    #     echo "changed files: $changed_files"
-    #     echo "files=$changed_files" >> $GITHUB_OUTPUT
     
     - name: Setup Python
       uses: actions/setup-python@v2

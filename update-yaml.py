@@ -32,12 +32,6 @@ def get_current_commit_sha():
     except subprocess.CalledProcessError as e:
         print("ERROR: Failed to get commit sha " + e)
         return None
-    
-    # if result.check_returncode == 0:
-    #     return result.stdout.strip()
-    # else:
-    #     print("ERROR: Failed to execture git rev-parse command" + result.stderr)
-    #     return None
 
 def get_changed_files(commit_sha):
     if commit_sha is None:
@@ -48,8 +42,6 @@ def get_changed_files(commit_sha):
     
     try:
         changed_files = subprocess.check_output(command).decode("utf-8").strip().split('\n')
-        if not changed_files:
-            print("ERROR: changed files list is empty")
         return changed_files
     except subprocess.CalledProcessError as e:
         print("ERROR: Failed to get list of changed files " + e)
