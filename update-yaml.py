@@ -3,7 +3,9 @@ import yaml;
 import os;
 import subprocess;
 from datetime import datetime;
-
+'''
+This script will only update age if the yaml file part of commit
+'''
 def calculate_age(dob):
     today = datetime.today()
     dob_date = datetime.strptime(dob, '%Y-%m-%d')
