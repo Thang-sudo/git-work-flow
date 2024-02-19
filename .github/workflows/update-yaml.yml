@@ -41,7 +41,7 @@ jobs:
     
     - name: Run python script
       run: |
-        python ../../update-yaml.py
+        python update-yaml.py
       working-directory: ${{ github.workspace }}
 
 
