@@ -47,7 +47,7 @@ jobs:
       uses: actions/upload-artifact@v2
       with:
         name: updated-yaml
-        path: ${{ steps.update_yaml.outputs.downloaded_files }}
+        path: ./savedFilters/*
 
 
 
