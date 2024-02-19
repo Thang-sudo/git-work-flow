@@ -50,9 +50,6 @@ def get_changed_files(commit_sha):
         changed_files = subprocess.check_output(command).decode("utf-8").strip().split('\n')
         if not changed_files:
             print("ERROR: changed files list is empty")
-        for file in changed_files:
-            if file == "":
-                print("File name is empty")
         return changed_files
     except subprocess.CalledProcessError as e:
         print("ERROR: Failed to get list of changed files " + e)
