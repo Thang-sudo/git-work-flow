@@ -64,6 +64,6 @@ if __name__ == "__main__":
             updated_file = update_yaml_file(file)
             updated_files.append(updated_file)
     print('\n'.join(updated_files))
-    print("::set-output name=downloaded_files::{}".format('\n'.join(updated_files)))
+    print("::set-output name=downloaded_files::{}".format(','.join(updated_files)))
 
 
