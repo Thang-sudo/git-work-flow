@@ -48,12 +48,6 @@ jobs:
       with:
         name: updated-yaml
         path: ${{ steps.update_yaml.outputs.downloaded_files }}
-        
-    - name: Download updated files
-      uses: actions/download-artifact@v2
-      with: 
-        name: updated-yaml
-        path: ${{ steps.update_yaml.outputs.downloaded_files }}
 
 
 
