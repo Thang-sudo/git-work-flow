@@ -48,11 +48,15 @@ jobs:
       with:
         name: updated-yaml
         path: ./savedFilters/*
+    
     - name: Download artifacts
       uses: actions/download-artifact@v2
       with:
         name: updated-yaml
         path: ./artifacts
+    
+    - name: List downloaded artifacts
+        run: ls -R ./artifacts
 
 
 
