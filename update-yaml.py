@@ -50,7 +50,8 @@ def get_changed_files(commit_sha):
 if __name__ == "__main__":
     commit_sha = get_current_commit_sha()
     changed_files = get_changed_files(commit_sha)
-    print("list of changed files: ")
+    print("list of changed yaml files: ")
     for file in changed_files:
-        print(file)
+        if file.startswith("savedFilters") and (file.endswith(".yaml") or file.endswith(".yml")):
+            print(file)
 
