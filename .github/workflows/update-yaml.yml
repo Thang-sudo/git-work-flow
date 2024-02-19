@@ -57,6 +57,16 @@ jobs:
     
     - name: List downloaded artifacts
       run: ls -R ./artifacts
+    
+    - name: Display artifact files content
+      run: |
+        # List all files recursively under the artifacts directory
+        for file in $(find ./artifacts -type f); do
+          echo "File: $file"
+          cat "$file"
+          echo "------------------"
+        done
+
 
 
 
