@@ -21,6 +21,14 @@ def update_yaml_file(input_file):
     
     with open(input_file, 'w') as f:
         yaml.dump(data, f)
+    
+    try:
+        subprocess.run(["git", "add", input_file])
+        subprocess.run(["git", "commit", "-m", "Update YAML file " + input_file + " [skip ci]"])
+        subprocess.run(["git", "push", "origin", "main"])
+        print("Changes committed to main branch.")
+    except subprocess.CalledProcessError as e:
+        print("ERROR: Failed to commit changes to main branch:", e)
 
 def get_current_commit_sha():
     command = ["git", "rev-parse", "HEAD"]
