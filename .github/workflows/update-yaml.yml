@@ -21,7 +21,7 @@ jobs:
     - name: Get list of updated savedFilter files
       id: list-files
       run: |
-        export changed_files=$(git diff-tree --no-commit-id --name-only -r ${{ github.sha }} | grep "^savedFilter/.*\.ya?ml$")
+        export changed_files=$(git diff-tree --no-commit-id --name-only -r ${{ github.sha }} | grep "^savedFilters/.*\.ya?ml$")
         echo "files=$changed_files" >> $GITHUB_OUTPUT
     
     - name: Setup Python
