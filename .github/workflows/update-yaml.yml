@@ -22,7 +22,7 @@ jobs:
       id: list-files
       run: |
         export current_commit=github.sha
-        export changed_files=$(git diff-tree --no-commit-id --name-only -r ${{ github.sha }}")
+        export changed_files=$(git diff-tree --no-commit-id --name-only -r ${{ github.sha }}")"
         echo "current commit is ${{github.sha}}"
         echo "List of files is $(git diff-tree --no-commit-id --name-only -r ${{ github.sha }})"
         echo "changed files: $changed_files"
