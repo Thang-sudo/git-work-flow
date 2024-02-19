@@ -23,6 +23,7 @@ def update_yaml_file(input_file):
         yaml.dump(data, f)
     
     try:
+        subprocess.run(["git", "status"])
         subprocess.run(["git", "add", input_file])
         subprocess.run(["git", "commit", "-m", "Update YAML file " + input_file + " [skip ci]"])
         subprocess.run(["git", "push", "origin", "main"])
