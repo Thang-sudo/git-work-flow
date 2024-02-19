@@ -17,17 +17,17 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
-    # Step to get list of yaml files 
-    - name: Get list of updated savedFilter files
-      id: list-files
-      run: |
-        export current_commit=github.sha
-        git diff-tree --no-commit-id --name-only -r ${{ github.sha }}
-        export changed_files=$(git diff-tree --no-commit-id --name-only -r ${{ github.sha }})
-        echo "current commit is ${{github.sha}}"
-        echo "List of files is $(git diff-tree --no-commit-id --name-only -r ${{ github.sha }})"
-        echo "changed files: $changed_files"
-        echo "files=$changed_files" >> $GITHUB_OUTPUT
+    # # Step to get list of yaml files 
+    # - name: Get list of updated savedFilter files
+    #   id: list-files
+    #   run: |
+    #     export current_commit=github.sha
+    #     git diff-tree --no-commit-id --name-only -r ${{ github.sha }}
+    #     export changed_files=$(git diff-tree --no-commit-id --name-only -r ${{ github.sha }})
+    #     echo "current commit is ${{github.sha}}"
+    #     echo "List of files is $(git diff-tree --no-commit-id --name-only -r ${{ github.sha }})"
+    #     echo "changed files: $changed_files"
+    #     echo "files=$changed_files" >> $GITHUB_OUTPUT
     
     - name: Setup Python
       uses: actions/setup-python@v2
@@ -41,6 +41,7 @@ jobs:
     
     - name: Run python script
       run: |
-        echo "Hello! This files are updated ${{ steps.list-files.files }}"
+        python ../../update-yaml.py
+      working-directory: ${{ github.workspace }}
 
 
