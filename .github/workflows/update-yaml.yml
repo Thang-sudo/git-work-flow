@@ -17,6 +17,12 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
+    # Step to get list of yaml files 
+    - name: Get list of updated savedFilter files
+      id: list-files
+      run: |
+        changed_files=$(git diff-tree --no-comit-id --name-only -r ${{ github.sha }} | grep "^savedFilter/.*\.ya?ml$")
+        echo "::set-output name=files::$changed_files"
     
     - name: Setup Python
       uses: actions/setup-python@v2
