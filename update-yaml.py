@@ -1,5 +1,6 @@
 import sys;
 import yaml;
+import os;
 import subprocess;
 from datetime import datetime;
 
@@ -45,9 +46,7 @@ def get_changed_files(commit_sha):
     # Run get diff-tree command to get list of changed files
     command = ["git", "diff-tree", "--no-commit-id", "--name-only", "-r", commit_sha]
     try:
-        result = subprocess.run(command, capture_output=True, text=True)
-        changed_files = result.stdout.strip().split('\n')
-        print("Got these files: " + result.stdout.strip())
+        changed_files = subprocess.check_output(['git', 'diff-tree', '--no-commit-id', '--name-only', '-r', os.environ['BUILD_SOURCEVERSION']]).decode('utf-8').strip().split('\n')
         return changed_files
     except subprocess.CalledProcessError as e:
         print("ERROR: Failed to get list of changed files " + e)
