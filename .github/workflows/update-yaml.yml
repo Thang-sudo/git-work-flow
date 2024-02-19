@@ -33,10 +33,14 @@ jobs:
         pip install pyyaml
     
     - name: Run python script
+      id: update_yaml
       run: |
         git config --global user.email "leminhthang.tnl@gmail.com"
         git config --global user.name "Thang-sudo"
         python update-yaml.py
       working-directory: ${{ github.workspace }}
+    
+    - name: Get Updated files
+      run: echo ${{ steps.update_yaml.outputs.downloaded_files }}
 
 

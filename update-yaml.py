@@ -21,15 +21,15 @@ def update_yaml_file(input_file):
     
     with open(input_file, 'w') as f:
         yaml.dump(data, f)
-    
-    try:
-        subprocess.run(["git", "status"])
-        subprocess.run(["git", "add", input_file])
-        subprocess.run(["git", "commit", "-m", "Update YAML file " + input_file + " [skip ci]"])
-        subprocess.run(["git", "push", "origin", "main"])
-        print("Changes committed to main branch.")
-    except subprocess.CalledProcessError as e:
-        print("ERROR: Failed to commit changes to main branch:", e)
+    return input_file
+    # try:
+    #     subprocess.run(["git", "status"])
+    #     subprocess.run(["git", "add", input_file])
+    #     subprocess.run(["git", "commit", "-m", "Update YAML file " + input_file + " [skip ci]"])
+    #     subprocess.run(["git", "push", "origin", "main"])
+    #     print("Changes committed to main branch.")
+    # except subprocess.CalledProcessError as e:
+    #     print("ERROR: Failed to commit changes to main branch:", e)
 
 def get_current_commit_sha():
     command = ["git", "rev-parse", "HEAD"]
@@ -58,8 +58,12 @@ def get_changed_files(commit_sha):
 if __name__ == "__main__":
     commit_sha = get_current_commit_sha()
     changed_files = get_changed_files(commit_sha)
+    updated_files =[]
     print("list of changed yaml files: ")
     for file in changed_files:
         if file.startswith("savedFilters") and (file.endswith(".yaml") or file.endswith(".yml")):
-            update_yaml_file(file)
+            updated_file = update_yaml_file(file)
+            updated_files.append(updated_file)
+    print("::set-output name=downloaded_files::{}".format('\n'.join(updated_files)))
+
 
