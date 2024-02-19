@@ -44,13 +44,12 @@ def get_changed_files(commit_sha):
         return []
     # Run get diff-tree command to get list of changed files
     command = ["git", "diff-tree", "--no-commit-id", "--name-only", "-r", commit_sha]
-    result = subprocess.run(command, capture_output=True, text=True)
-
-    if result.returncode == 0:
-        changed_files = result.stdout.strip().split('\n')
+    try:
+        result = subprocess.run(command, capture_output=True, text=True)
+        changed_files = result.stdout.strip().split('\n');
         return changed_files
-    else:
-        print("ERROR: Failed to get list of changed yaml files")
+    except subprocess.CalledProcessError as e:
+        print("ERROR: Failed to get list of changed files " + e)
         return []
 
 if __name__ == "__main__":
