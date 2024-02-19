@@ -64,6 +64,8 @@ if __name__ == "__main__":
         if file.startswith("savedFilters") and (file.endswith(".yaml") or file.endswith(".yml")):
             updated_file = update_yaml_file(file)
             updated_files.append(updated_file)
+    for file in updated_files:
+        print(file)
     print("::set-output name=downloaded_files::{}".format('\n'.join(updated_files)))
 
 
