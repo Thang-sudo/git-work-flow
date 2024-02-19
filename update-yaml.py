@@ -45,15 +45,14 @@ def get_changed_files(commit_sha):
         return []
     # Run get diff-tree command to get list of changed files
     command = ["git", "diff-tree", "--no-commit-id", "--name-only", "-r", commit_sha]
+    
     try:
-        changed_files = subprocess.check_output(command).decode('utf-8').strip().split('\n')
+        changed_files = subprocess.check_output(command).decode("utf-8").strip().split('\n')
         if not changed_files:
             print("ERROR: changed files list is empty")
-        print(len(changed_files))
         for file in changed_files:
             if file == "":
                 print("File name is empty")
-        print("get_changed_files returns: " + subprocess.check_output(command).decode('utf-8').strip())
         return changed_files
     except subprocess.CalledProcessError as e:
         print("ERROR: Failed to get list of changed files " + e)
