@@ -56,7 +56,7 @@ jobs:
         path: ./artifacts
     
     - name: List downloaded artifacts
-        run: ls -R ./artifacts
+      run: ls -R ./artifacts
 
 
 
